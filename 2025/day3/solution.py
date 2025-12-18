@@ -33,11 +33,8 @@ def helper_function(count_positions: dict[int, deque[int]], n: int, length: int)
         for key in sorted(count_positions.keys(), reverse=True):
             while count_positions[key] and count_positions[key][0] <= current_index:
                 count_positions[key].popleft()
-            if not count_positions[key]:
+            if not count_positions[key] or length-(n - l_result) < count_positions[key][0]:
                 continue
-            if (n - l_result)> length-count_positions[key][0]:
-                continue
-            
             current_index = count_positions[key].popleft()
             result.append(key)
             found_change = True
